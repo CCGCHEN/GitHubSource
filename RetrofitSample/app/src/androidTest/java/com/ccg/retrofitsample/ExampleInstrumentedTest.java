@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.ccg.retrofitsample.request.RetrofitRequestModule;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,5 +24,11 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.ccg.retrofitsample", appContext.getPackageName());
+    }
+
+
+    @Test
+    public void listRepo() {
+        RetrofitRequestModule.getInstance().listRepos();
     }
 }
