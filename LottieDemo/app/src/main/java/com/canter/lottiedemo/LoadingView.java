@@ -1,5 +1,6 @@
 package com.canter.lottiedemo;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -31,14 +32,52 @@ public class LoadingView extends FrameLayout {
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1000);
         layoutParams.gravity = Gravity.CENTER;
         addView(lottieAnimationView, layoutParams);
-        lottieAnimationView.setAnimation("HamburgerArrow.json");
+//        lottieAnimationView.setAnimation("HamburgerArrow.json");
+        lottieAnimationView.setImageAssetsFolder("images");
+        lottieAnimationView.setAnimation("WeAccept.json");
         lottieAnimationView.loop(true);
+        //设置播放速度
+//        lottieAnimationView.setSpeed(10);
+        //设置播放进度，浮点数，表示从整理的百分之多少开始播放。
+        lottieAnimationView.setProgress(0.9f);
+//        lottieAnimationView.addColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP));
+//        lottieAnimationView.addColorFilterToContent();
+//        lottieAnimationView.addColorFilterToLayer("MASTER", new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP));
+        lottieAnimationView.addColorFilterToLayer("BG",  new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP));
+
+        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        lottieAnimationView.addAnimatorUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+
+            }
+        });
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        lottieAnimationView.addColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP));
         lottieAnimationView.playAnimation();
     }
 }
